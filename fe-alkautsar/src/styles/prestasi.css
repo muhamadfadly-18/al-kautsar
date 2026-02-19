@@ -1,0 +1,234 @@
+.prestasi-wrapper {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: #0a1f16;
+}
+
+.main-content-locked {
+    height: 100%;
+    z-index: 10;
+    position: relative;
+}
+
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.modal-open .main-content-locked {
+    filter: blur(5px);
+}
+
+.gradient-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0a1f16 0%, #1a3d2c 50%, #0d2b1e 100%);
+    z-index: 1;
+}
+
+.mesh-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    z-index: 2;
+}
+
+.top-left {
+    background: #d4af37;
+    top: -200px;
+    left: -200px;
+}
+
+.bottom-right {
+    background: #2ecc71;
+    bottom: -200px;
+    right: -200px;
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+.ls-4 {
+    letter-spacing: 4px;
+}
+
+.divider-glow {
+    width: 60px;
+    height: 5px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.prestasi-card {
+    position: relative;
+    height: 65vh;
+    max-height: 500px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #1a3d2c;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s ease;
+}
+
+.year-pill {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(212, 175, 55, 0.9);
+    color: #1a3d2c;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-weight: 800;
+    z-index: 10;
+    font-size: 0.7rem;
+}
+
+.card-content {
+    position: absolute;
+    inset: 0;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(10, 31, 22, 1) 0%, rgba(10, 31, 22, 0) 80%);
+    z-index: 5;
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+.prestasi-card:hover {
+    transform: translateY(-10px);
+    border-color: #d4af37;
+}
+
+.custom-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.custom-modal-content {
+    background: #122c20;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 40px;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    position: relative;
+    animation: slideUp 0.5s ease;
+}
+
+.modal-img-container {
+    height: 100%;
+    min-height: 300px;
+    position: relative;
+}
+
+.modal-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    z-index: 100;
+    cursor: pointer;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.allow-scroll {
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(5px);
+}
+
+.close-btn:hover {
+    background: #ff4d4d;
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+    border-color: rgba(255, 77, 77, 0.5);
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.4);
+}
+
+.close-btn:active {
+    transform: scale(0.9);
+}
+
+@media (max-width: 768px) {
+    .prestasi-wrapper {
+        overflow-y: auto;
+        height: auto;
+    }
+
+    .prestasi-card {
+        height: 400px;
+    }
+}

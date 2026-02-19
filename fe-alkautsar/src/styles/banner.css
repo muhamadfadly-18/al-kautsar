@@ -1,0 +1,138 @@
+.banner {
+    position: relative;
+    height: 80vh;
+    background: linear-gradient(180deg, #1a3d2c, #28a745);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    color: white;
+    isolation: isolate;
+}
+
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+}
+
+.banner-title {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.banner-text {
+    max-width: 720px;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.banner-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-outline {
+    padding: 0.7rem 1.8rem;
+    border-radius: 999px;
+    border: 2px solid #ffc107;
+    background: transparent;
+    color: #ffc107;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-outline:hover {
+    background: #ffc107;
+    color: black;
+}
+
+.btn-primary {
+    padding: 0.7rem 1.8rem;
+    border-radius: 999px;
+    border: none;
+    background: #ffc107;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    z-index: 3;
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.3px);
+    height: 150px;
+}
+
+.parallax>use {
+    animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 7s;
+    fill: rgba(30, 193, 27, 0.7);
+}
+
+.parallax>use:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 10s;
+    fill: rgba(255, 255, 255, 0.5);
+}
+
+.parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+    fill: rgba(255, 255, 255, 0.3);
+}
+
+.parallax>use:nth-child(4) {
+    animation-delay: -5s;
+    animation-duration: 20s;
+    fill: #f8f9fa;
+   
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/* Responsive: Kecilkan gelombang di mobile */
+@media (max-width: 768px) {
+    .wave svg {
+        height: 60px;
+    }
+}

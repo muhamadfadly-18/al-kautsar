@@ -1,0 +1,65 @@
+.tracking-wider {
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+}
+
+.ekskul-card {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+}
+
+.ekskul-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.5s ease;
+}
+
+.ekskul-card:hover .icon-wrapper {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.dot-active {
+    width: 8px;
+    height: 8px;
+    background: #2ecc71;
+    border-radius: 50%;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.ekskul-item:hover .dot-active {
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px #2ecc71;
+}
+
+.ekskul-item:last-child {
+    border-bottom: none !important;
+}
+
+.ekskul-item span {
+    transition: color 0.3s ease;
+}
+
+.ekskul-item:hover span {
+    color: #1a3d2c !important;
+    font-weight: 700;
+}
+
+@media (max-width: 991px) {
+    .ekskul-card {
+        margin-bottom: 20px;
+    }
+}

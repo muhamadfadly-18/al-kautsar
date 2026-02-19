@@ -1,0 +1,44 @@
+.navbar {
+    background: rgba(20, 61, 44, 0.7);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-link {
+    color: #fff;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background: #1cc88a;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-toggler {
+    filter: invert(100%);
+}
+
+.cta-btn {
+    padding: 8px 20px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #1cc88a, #4e73df);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}

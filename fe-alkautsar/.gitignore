@@ -1,0 +1,88 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage & test output
+lib-cov
+coverage
+*.lcov
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependencies
+bower_components/
+
+# Node build tools
+.lock-wscript
+build/Release
+node_modules/
+jspm_packages/
+web_modules/
+
+# Snowpack / Vite / Parcel / Next / Nuxt / Gatsby / Vuepress / Docusaurus / Serverless
+.cache
+.parcel-cache
+.next
+out
+.nuxt
+dist
+.cache/
+.vuepress/dist
+.temp
+**/.vitepress/dist
+**/.vitepress/cache
+.docusaurus
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm/yarn cache & lock files
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Linters / Stylelint / Microbundle
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# REPL & package output
+.node_repl_history
+*.tgz
+.yarn-integrity
+
+# dotenv
+.env
+.env.*.local
+
+# Vite / Parcel / general build artifacts
+dist/
+build/
+
+# Optional: public folder for Gatsby (aktifkan kalau perlu)
+# public/

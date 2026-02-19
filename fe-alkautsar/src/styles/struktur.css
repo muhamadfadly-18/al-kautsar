@@ -1,0 +1,247 @@
+.struktur-wrapper {
+    background-color: #f0f4f8;
+    min-height: 100vh;
+    position: relative;
+}
+
+.text-emerald {
+    color: #1a3d2c;
+}
+
+.btn-emerald {
+    background: #1a3d2c;
+    color: white;
+    border: none;
+}
+
+.btn-emerald:hover {
+    background: #142e22;
+    color: #d4af37;
+}
+
+.text-gold {
+    color: #d4af37;
+}
+
+.ls-2 {
+    letter-spacing: 2px;
+}
+
+.divider-custom {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #1a3d2c, #d4af37);
+    border-radius: 2px;
+}
+
+.profile-card {
+    cursor: pointer;
+    max-width: 200px;
+}
+
+.clickable-profile {
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay-info {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 61, 44, 0.8);
+    color: white;
+    padding: 10px;
+    transition: 0.3s;
+    font-size: 0.8rem;
+}
+
+.profile-card:hover .overlay-info {
+    bottom: 0;
+}
+
+.profile-card:hover .img-container {
+    transform: scale(1.05);
+    border-color: #d4af37;
+}
+
+.img-container {
+    width: 160px;
+    height: 160px;
+    border: 4px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    outline: 2px solid #d4af37;
+    transition: 0.4s;
+}
+
+.img-container-md {
+    width: 110px;
+    height: 110px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    outline: 2px solid rgba(26, 61, 44, 0.2);
+    transition: 0.3s;
+}
+
+.img-container img,
+.img-container-md img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-position {
+    background: #1a3d2c;
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    display: inline-block;
+    border: 1px solid #d4af37;
+}
+
+.section-card {
+    background: #fff;
+    border: none;
+    transition: 0.3s;
+}
+
+.member-item {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.member-item:hover {
+    background: #f8fafc;
+    transform: translateX(5px);
+}
+
+.icon-box {
+    width: 40px;
+    height: 40px;
+    background: #1a3d2c;
+    color: #d4af37;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.detail-card-modern {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 30px;
+    position: relative;
+}
+
+.card-header-gold {
+    height: 100px;
+    background: #1a3d2c;
+    width: 100%;
+}
+
+.img-detail-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin-top: -75px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.img-detail-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-close-custom {
+    position: absolute;
+    top: 15px;
+    end: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.info-item small {
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+}
+
+.info-item p {
+    color: #1a3d2c;
+    font-weight: 600;
+    margin: 0;
+}
+
+.animate-zoom {
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.connector-v {
+    width: 2px;
+    height: 50px;
+    background: #d4af37;
+}
+
+.connector-v-small {
+    width: 2px;
+    height: 30px;
+    background: #d4af37;
+}
+
+@media (max-width: 768px) {
+    .img-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .detail-card-modern {
+        max-width: 90%;
+    }
+}

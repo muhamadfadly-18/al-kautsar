@@ -1,0 +1,131 @@
+  .tentang-section {
+      padding: 80px 0;
+      background: transparent;
+      color: #212529;
+      /* Warna dasar Hitam/Dark */
+  }
+
+  /* Warna Custom */
+  .text-gold {
+      color: #b8860b;
+  }
+
+  /* Gold lebih deep agar kelihatan di putih */
+  .text-emerald {
+      color: #1a8e4c;
+  }
+
+  .text-dark {
+      color: #1a1a1a !important;
+  }
+
+  .ls-3 {
+      letter-spacing: 3px;
+  }
+
+  .accent-line-gold {
+      width: 50px;
+      height: 5px;
+      background: #b8860b;
+      border-radius: 10px;
+  }
+
+  /* Light Glass Card */
+  .light-glass-card {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 30px;
+      transition: all 0.4s ease;
+  }
+
+  .light-glass-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+      border-color: #b8860b;
+  }
+
+  .featured-card {
+      border-bottom: 4px solid #1a8e4c;
+  }
+
+  .icon-box-modern {
+      width: 60px;
+      height: 60px;
+      background: #f8f9fa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+  }
+
+  /* Moto List */
+  .moto-list-modern {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+  }
+
+  .moto-item-new {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+  }
+
+  .dot-solid {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+  }
+
+  .dot-solid.gold {
+      background: #b8860b;
+  }
+
+  .dot-solid.emerald {
+      background: #1a8e4c;
+  }
+
+  .dot-solid.blue {
+      background: #007bff;
+  }
+
+  /* Visual Wrapper */
+  .visual-wrapper {
+      position: relative;
+  }
+
+  .main-img-frame {
+      position: relative;
+      z-index: 2;
+      border: 8px solid white;
+  }
+
+  .img-shadow-decor {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #1a8e4c;
+      top: 20px;
+      right: -20px;
+      border-radius: 50px;
+      opacity: 0.1;
+      z-index: 1;
+  }
+
+  .visi-card {
+      border-bottom: 4px solid #b8860b;
+  }
+
+  .fasilitas-card {
+      border-bottom: 4px solid #0b81b8;
+  }
+
+  @media (max-width: 991px) {
+      .display-4 {
+          font-size: 2.2rem;
+      }
+  }
