@@ -1,0 +1,186 @@
+/* ===== SIDEBAR MODERN ===== */
+.admin-sidebar {
+  position: sticky;
+  top: 20px;
+
+  width: 260px;
+  min-height: 100vh;
+
+  padding: 24px;
+  border-radius: 24px;
+
+  background: linear-gradient(180deg, #0f172a 0%, #0f766e 100%);
+  backdrop-filter: blur(20px);
+
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  transition: 0.3s;
+}
+
+/* ===== BRAND ===== */
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-brand__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #fff, #bae6fd);
+  color: #0f766e;
+  font-weight: bold;
+}
+
+/* ===== NAV ===== */
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===== NAV ITEM ===== */
+.admin-nav__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 16px;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid transparent;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* LEFT SIDE */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-icon {
+  font-size: 18px;
+}
+
+/* HOVER */
+.admin-nav__item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(4px);
+}
+
+/* ACTIVE */
+.admin-nav__item.active {
+  background: linear-gradient(135deg, #14b8a6, #3b82f6);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* ===== BADGE ===== */
+.admin-nav__badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+
+  background: #facc15;
+  color: #78350f;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ===== PROFILE ===== */
+.admin-profile-card {
+  margin-top: auto;
+  padding: 16px;
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-profile-card p {
+  margin: 6px 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== BUTTON ===== */
+.admin-button--ghost {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+/* ===== MOBILE HEADER ===== */
+.mobile-header {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  font-weight: bold;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  font-size: 22px;
+  background: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .admin-dashboard {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    transform: translateX(-100%);
+  }
+
+  .admin-sidebar.active {
+    transform: translateX(0);
+  }
+}

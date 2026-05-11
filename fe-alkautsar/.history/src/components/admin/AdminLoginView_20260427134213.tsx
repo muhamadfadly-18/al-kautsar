@@ -1,0 +1,65 @@
+import type { AdminLoginViewProps } from "./types";
+
+const AdminLoginView = ({
+  email,
+  password,
+  loading,
+  errorMessage,
+  sessionMessage,
+  onSubmit,
+  onEmailChange,
+  onPasswordChange,
+}: AdminLoginViewProps) => (
+  <main className="login-container">
+    <div className="login-card">
+      
+      {/* HEADER */}
+      <div className="login-header">
+        <div className="login-logo">AK</div>
+        <h2>Admin Panel</h2>
+        <p>Masuk ke dashboard Al-Kautsar</p>
+      </div>
+
+      {/* FORM */}
+      <form onSubmit={onSubmit} className="login-form">
+
+        <div className="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="admin@alkautsar.sch.id"
+            value={email}
+            onChange={(e) => onEmailChange(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Masukkan password"
+            value={password}
+            onChange={(e) => onPasswordChange(e.target.value)}
+            required
+          />
+        </div>
+
+        {/* ERROR */}
+        {errorMessage && (
+          <div className="alert error">{errorMessage}</div>
+        )}
+
+        {sessionMessage && (
+          <div className="alert warning">{sessionMessage}</div>
+        )}
+
+        <button type="submit" disabled={loading}>
+          {loading ? "Memproses..." : "Login"}
+        </button>
+      </form>
+    </div>
+  </main>
+);
+
+export default AdminLoginView;

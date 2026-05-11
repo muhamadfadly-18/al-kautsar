@@ -2,6 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/pimpinan.css";
 import { useNavigate } from "react-router-dom";
+import type {
+  OrganizationContent,
+  OrganizationMember,
+} from "../data/organizationContent";
+import { defaultOrganizationContent } from "../data/organizationContent";
+import { getOrganizationContent } from "../services/content/organization";
+import { getSafeImageSrc } from "../utils/image";
 
 const InteractiveCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -124,84 +131,80 @@ const InteractiveCanvas = () => {
 };
 
 const PimpinanDepan = () => {
-  const [selectedPimpinan, setSelectedPimpinan] = useState<any>(null);
+  const [selectedPimpinan, setSelectedPimpinan] =
+    useState<OrganizationMember | null>(null);
+  const [organization, setOrganization] = useState<OrganizationContent>(
+    defaultOrganizationContent,
+  );
   const navigate = useNavigate();
 
-  const pimpinanData = {
-    utama: {
-      name: "Ust. Ahmad Fadly",
-      position: "Kepala Pondok",
-      img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
-      bio: "Berdedikasi selama 15 tahun dalam memimpin pendidikan karakter islami.",
-      social: { ig: "@ahmad_fadly", mail: "fadly@alkautsar.com" },
-    },
-    staff: [
-      {
-        name: "Ust. Nur Aulia",
-        position: "Lurah 1",
-        img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
-        bio: "Bertanggung jawab atas kedisiplinan santri.",
-        social: { ig: "@nuraulia", mail: "nuraulia@alkautsar.com" },
-      },
-      {
-        name: "Ust. Hidayat",
-        position: "Lurah 2",
-        img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
-        bio: "Mengelola kurikulum ekstrakurikuler.",
-        social: { ig: "@hidayat_ust", mail: "hidayat@alkautsar.com" },
-      },
-    ],
-  };
+  useEffect(() => {
+    const loadOrganization = async () => {
+      try {
+        const result = await getOrganizationContent();
+        setOrganization(result);
+      } catch (error) {
+        console.error("Gagal memuat data pimpinan dari API", error);
+        setOrganization(defaultOrganizationContent);
+      }
+    };
+
+    void loadOrganization();
+  }, []);
 
   return (
-    <section className="pimpinan-section py-5">
+    <section className="pimpinan-section py-5" id="pimpinan">
       <InteractiveCanvas />
 
       <div className="container position-relative z-2">
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 pimpinan-header">
           <h6 className="text-accent fw-bold text-uppercase ls-3">
             Dewan Pimpinan
           </h6>
-          <h2 className="display-5 fw-bold text-white">
+          <h2 className="display-5 fw-bold text-white pimpinan-title">
             Mengenal Pimpinan Kami
           </h2>
+          <p className="pimpinan-subtitle mx-auto mt-3 mb-0">
+            Kenali sosok-sosok yang membimbing arah pendidikan, karakter, dan
+            perkembangan santri Al-Kautsar.
+          </p>
           <div className="divider-glow-gold mx-auto mt-3"></div>
         </div>
 
-        <div className="row justify-content-center align-items-center g-5">
+        <div className="row justify-content-center align-items-center g-4 g-xl-5 pimpinan-layout">
           <div
-            className={`col-lg-${selectedPimpinan ? "5" : "12"} transition-all duration-700`}
+            className={`${
+              selectedPimpinan ? "col-lg-6 col-xl-5" : "col-12"
+            } transition-all duration-700`}
           >
-            <div className="d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-center pimpinan-network">
               <div
-                className={`pimpinan-circle big-circle mb-5 ${selectedPimpinan?.name === pimpinanData.utama.name ? "active-ring-gold" : ""}`}
-                onClick={() => setSelectedPimpinan(pimpinanData.utama)}
+                className={`pimpinan-circle big-circle mb-5 ${selectedPimpinan?.name === organization.head.name ? "active-ring-gold" : ""}`}
+                onClick={() => setSelectedPimpinan(organization.head)}
               >
-                <img src={pimpinanData.utama.img} alt="Kepala" />
+                <img
+                  src={getSafeImageSrc(organization.head.img)}
+                  alt={organization.head.name}
+                />
                 <div className="label-float-dark">
-                  <p className="m-0 fw-bold">{pimpinanData.utama.name}</p>
+                  <p className="m-0 fw-bold">{organization.head.name}</p>
                   <small className="text-success-light">
-                    {pimpinanData.utama.position}
+                    {organization.head.position}
                   </small>
                 </div>
               </div>
 
-              <div className="d-flex gap-4 gap-md-5 justify-content-center">
-                {pimpinanData.staff.map((person, idx) => (
+              <div className="pimpinan-leaders">
+                {organization.leaders.map((person) => (
                   <div
-                    key={idx}
+                    key={person.id}
                     className={`pimpinan-circle small-circle ${selectedPimpinan?.name === person.name ? "active-ring-gold" : ""}`}
                     onClick={() => setSelectedPimpinan(person)}
                   >
-                    <img src={person.img} alt={person.name} />
+                    <img src={getSafeImageSrc(person.img)} alt={person.name} />
                     <div className="label-float-dark">
-                      <p className="m-0 fw-bold small">
-                        {person.name.split(" ")[1]}
-                      </p>
-                      <small
-                        className="text-success-light"
-                        style={{ fontSize: "0.7rem" }}
-                      >
+                      <p className="m-0 fw-bold small">{person.name}</p>
+                      <small className="text-success-light">
                         {person.position}
                       </small>
                     </div>
@@ -212,10 +215,11 @@ const PimpinanDepan = () => {
           </div>
 
           {selectedPimpinan && (
-            <div className="col-lg-5 animate-reveal">
+            <div className="col-lg-6 col-xl-5 animate-reveal">
               <div className="detail-card-glass p-4 p-md-5 position-relative">
                 <button
                   className="btn-close btn-close-white position-absolute top-0 end-0 m-4"
+                  type="button"
                   onClick={() => setSelectedPimpinan(null)}
                 ></button>
                 <h3 className="fw-bold text-white mb-1">
@@ -224,14 +228,16 @@ const PimpinanDepan = () => {
                 <p className="text-accent fw-bold mb-4">
                   {selectedPimpinan.position}
                 </p>
-                <p className="text-light-muted lh-lg">{selectedPimpinan.bio}</p>
+                <p className="text-light-muted lh-lg">
+                  {selectedPimpinan.bio || "Bio pimpinan belum diisi."}
+                </p>
               </div>
             </div>
           )}
         </div>
         <div className="text-center mt-5">
           <button
-            className="btn btn-outline-warning px-5 py-3 rounded-pill fw-semibold shadow-lg"
+            className="btn btn-outline-warning px-4 px-md-5 py-3 rounded-pill fw-semibold shadow-lg pimpinan-cta"
             onClick={() => navigate("/struktur-organisasi")}
           >
             Lihat Struktur Organisasi

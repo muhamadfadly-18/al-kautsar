@@ -1,118 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import type {
+  OrganizationContent,
+  OrganizationMember,
+} from "../data/organizationContent";
+import { defaultOrganizationContent } from "../data/organizationContent";
+import { getOrganizationContent } from "../services/content/organization";
+import { getSafeImageSrc } from "../utils/image";
 import "../styles/struktur.css";
 
-type Member = {
-  name: string;
-  position: string;
-  img: string;
-  bio?: string;
-  education?: string;
-  years?: string;
-};
-
-const strukturData = {
-  kepala: {
-    name: "Ust. Ahmad Fadly",
-    position: "Kepala Pondok",
-    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400",
-    bio: "Berdedikasi dalam mengembangkan kurikulum berbasis adab dan teknologi.",
-    education: "S2 Pendidikan Islam - Al-Azhar Cairo",
-    years: "15 Tahun",
-  },
-  lurah: [
-    {
-      name: "Ust. Nur Aulia",
-      position: "Lurah 1",
-      img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400",
-      bio: "Fokus pada pengembangan disiplin dan karakter santri asrama.",
-      education: "S1 Syariah - LIPIA Jakarta",
-      years: "8 Tahun",
-    },
-    {
-      name: "Ust. Hidayat",
-      position: "Lurah 2",
-      img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400",
-      bio: "Mengelola manajemen fasilitas dan kesejahteraan santri.",
-      education: "S1 Manajemen - Universitas Indonesia",
-      years: "6 Tahun",
-    },
-  ],
-  bagian: [
-    {
-      section: "Kesiswaan",
-      icon: "bi-people-fill",
-      members: [
-        {
-          name: "Ust. Siti Rahma",
-          position: "Koordinator",
-          img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200",
-          bio: "Ahli dalam konseling remaja dan pengembangan bakat.",
-          education: "S1 Psikologi",
-          years: "5 Tahun",
-        },
-        {
-          name: "Ust. Fadli",
-          position: "Staff",
-          img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
-          bio: "Koordinator kegiatan ekstrakurikuler santri.",
-          education: "S1 Olahraga",
-          years: "3 Tahun",
-        },
-      ],
-    },
-    {
-      section: "Akademik",
-      icon: "bi-book-fill",
-      members: [
-        {
-          name: "Ust. Rahmat",
-          position: "Koordinator",
-          img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-          bio: "Pengawas kualitas pengajaran dan kurikulum.",
-          education: "S2 Kurikulum",
-          years: "10 Tahun",
-        },
-        {
-          name: "Ust. Lina",
-          position: "Staff",
-          img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-          bio: "Adminitrasi nilai dan data akademik santri.",
-          education: "S1 Administrasi",
-          years: "4 Tahun",
-        },
-      ],
-    },
-    {
-      section: "Keuangan",
-      icon: "bi-cash-stack",
-      members: [
-        {
-          name: "Ust. Hidayat",
-          position: "Bendahara",
-          img: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&q=80&w=200",
-          bio: "Transparansi dan manajemen finansial pesantren.",
-          education: "S1 Akuntansi",
-          years: "7 Tahun",
-        },
-      ],
-    },
-  ],
-};
-
 const StrukturOrganisasiPage = () => {
-  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [selectedMember, setSelectedMember] =
+    useState<OrganizationMember | null>(null);
+  const [organization, setOrganization] = useState<OrganizationContent>(
+    defaultOrganizationContent,
+  );
+
+  useEffect(() => {
+    const loadOrganization = async () => {
+      try {
+        const result = await getOrganizationContent();
+        setOrganization(result);
+      } catch {
+        setOrganization(defaultOrganizationContent);
+      }
+    };
+
+    void loadOrganization();
+  }, []);
 
   return (
     <div className="struktur-wrapper py-5 mt-5">
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="display-5 fw-bold text-emerald mb-2 ">
-            Struktur Organisasi
+            {organization.title}
           </h2>
           <h5 className="text-gold fw-light tracking-widest text-uppercase">
-            Pondok Pesantren Al-Kautsar
+            {organization.subtitle}
           </h5>
           <div className="divider-custom mx-auto mt-4"></div>
         </div>
@@ -120,12 +46,12 @@ const StrukturOrganisasiPage = () => {
         <div className="tree-level text-center mb-5">
           <div
             className="profile-card main-leader mx-auto"
-            onClick={() => setSelectedMember(strukturData.kepala)}
+            onClick={() => setSelectedMember(organization.head)}
           >
             <div className="img-container shadow-lg clickable-profile">
               <img
-                src={strukturData.kepala.img}
-                alt={strukturData.kepala.name}
+                src={getSafeImageSrc(organization.head.img)}
+                alt={organization.head.name}
               />
               <div className="overlay-info">
                 <i className="bi bi-eye"></i> Detail
@@ -133,10 +59,10 @@ const StrukturOrganisasiPage = () => {
             </div>
             <div className="profile-info mt-3">
               <h4 className="fw-bold text-emerald mb-0">
-                {strukturData.kepala.name}
+                {organization.head.name}
               </h4>
               <span className="badge-position shadow-sm">
-                {strukturData.kepala.position}
+                {organization.head.position}
               </span>
             </div>
           </div>
@@ -148,9 +74,9 @@ const StrukturOrganisasiPage = () => {
             className="connector-h position-absolute top-0 start-50 translate-middle-x d-none d-md-block"
             style={{ width: "30%", height: "2px", background: "#d4af37" }}
           ></div>
-          {strukturData.lurah.map((person, idx) => (
+          {organization.leaders.map((person) => (
             <div
-              key={idx}
+              key={person.id}
               className="col-md-4 col-6 text-center position-relative mt-3"
             >
               <div className="connector-v-small mx-auto d-none d-md-block"></div>
@@ -159,7 +85,7 @@ const StrukturOrganisasiPage = () => {
                 onClick={() => setSelectedMember(person)}
               >
                 <div className="img-container-md shadow clickable-profile">
-                  <img src={person.img} alt={person.name} />
+                  <img src={getSafeImageSrc(person.img)} alt={person.name} />
                 </div>
                 <div className="profile-info-sm mt-2">
                   <h6 className="fw-bold text-emerald mb-0">{person.name}</h6>
@@ -171,8 +97,8 @@ const StrukturOrganisasiPage = () => {
         </div>
 
         <div className="row g-4 mt-5">
-          {strukturData.bagian.map((section, idx) => (
-            <div key={idx} className="col-lg-4">
+          {organization.sections.map((section) => (
+            <div key={section.id} className="col-lg-4">
               <div className="section-card shadow-sm h-100 p-4 rounded-4">
                 <div className="d-flex align-items-center mb-4 border-bottom pb-3">
                   <div className="icon-box me-3">
@@ -183,14 +109,14 @@ const StrukturOrganisasiPage = () => {
                   </h5>
                 </div>
                 <div className="members-list">
-                  {section.members.map((member, i) => (
+                  {section.members.map((member) => (
                     <div
-                      key={i}
+                      key={member.id}
                       className="d-flex align-items-center mb-3 member-item p-2 rounded-3"
                       onClick={() => setSelectedMember(member)}
                     >
                       <img
-                        src={member.img}
+                        src={getSafeImageSrc(member.img)}
                         alt={member.name}
                         className="rounded-circle me-3 border border-2 border-gold"
                         style={{
@@ -230,7 +156,10 @@ const StrukturOrganisasiPage = () => {
             </button>
             <div className="p-4 text-center">
               <div className="img-detail-wrapper mx-auto">
-                <img src={selectedMember.img} alt={selectedMember.name} />
+                <img
+                  src={getSafeImageSrc(selectedMember.img)}
+                  alt={selectedMember.name}
+                />
               </div>
               <h3 className="fw-bold text-emerald mt-3 mb-1">
                 {selectedMember.name}

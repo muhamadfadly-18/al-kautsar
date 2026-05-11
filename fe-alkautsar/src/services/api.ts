@@ -1,5 +1,10 @@
-import axios from "axios";
+export {
+  createContentItem,
+  deleteContentItem,
+  getHomeContent,
+  saveContentSection,
+  updateContentItem,
+} from "./content/home";
 
-export const api = axios.create({
-    baseURL: "http://localhost:3000",
-});
+export type { AuthUser, LoginPayload, LoginResult } from "./admin/auth";
+export { loginAdmin, setAuthToken } from "./admin/auth";
